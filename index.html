@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Miyakonojo Culture Beats</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Helvetica+Neue:wght@100&display=swap');
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', sans-serif;
             margin: 0;
             padding: 0;
             display: flex;
@@ -20,14 +22,18 @@
             text-align: center;
         }
         .title {
-            font-size: 3rem;
+            font-size: 6rem; /* 全体を大きく表示 */
+            line-height: 1.2;
         }
         .char {
             display: inline-block;
             opacity: 1;
         }
+        .highlight {
+            color: red;
+        }
         .description {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             margin-top: 20px;
         }
     </style>
@@ -47,6 +53,9 @@
                 const span = document.createElement('span');
                 span.className = 'char';
                 span.innerText = text[i];
+                if (text[i] === 'M' || text[i] === 'C' || text[i] === 'B') {
+                    span.classList.add('highlight');
+                }
                 title.appendChild(span);
             }
 

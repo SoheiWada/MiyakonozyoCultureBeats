@@ -19,17 +19,12 @@
         .container {
             text-align: center;
         }
-        h1 {
+        .title {
             font-size: 3rem;
-            animation: blink 1s infinite;
         }
-        @keyframes blink {
-            0%, 100% {
-                opacity: 1;
-            }
-            50% {
-                opacity: 0;
-            }
+        .char {
+            display: inline-block;
+            opacity: 1;
         }
         .description {
             font-size: 1.2rem;
@@ -39,8 +34,31 @@
 </head>
 <body>
     <div class="container">
-        <h1>Miyakonojo Culture Beats</h1>
+        <div class="title" id="title">Miyakonojo Culture Beats</div>
         <p class="description">Coming Soon</p>
     </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const title = document.getElementById('title');
+            const text = title.innerText;
+            title.innerHTML = '';
+
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.className = 'char';
+                span.innerText = text[i];
+                title.appendChild(span);
+            }
+
+            const chars = document.querySelectorAll('.char');
+            setInterval(() => {
+                chars.forEach((char) => {
+                    const delay = Math.random() * 1.5; // ランダムな遅延
+                    char.style.transition = `opacity ${delay}s`;
+                    char.style.opacity = Math.random() > 0.5 ? '0' : '1';
+                });
+            }, 500);
+        });
+    </script>
 </body>
 </html>
